@@ -6,8 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"ts-node-dev --respawn src/index.ts\" \" npm run dev:client\" ",
+    "init:dev": "cd client && npm i && cd .. && npm i && concurrently \"ts-node-dev --respawn src/index.ts\" \" npm run dev:client\" ",
+    "dev:server": "ts-node-dev --respawn src/index.ts",
     "dev:client": "cd client && npm run dev",
-    "build": "npm install && npm tsc",
+    "build": "npm install &&  tsc",
     "start": "cd client && npm run build && cd .. && tsc && node dist/index.js"
   },
   "author": "",
