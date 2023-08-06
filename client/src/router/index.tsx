@@ -19,7 +19,7 @@ const router = createBrowserRouter([
   },
   {
     path: "about",
-    element:<Private Element={HomePage}  isAllowed={false} props={{hello:true}} redirect="/"></Private>,
+    element:<Private Element={HomePage}  isAllowed={true} props={{hello:true}} redirect="/"></Private>,
   },
 ]);
 
