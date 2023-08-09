@@ -4,7 +4,7 @@ import {
 } from "react-router-dom";
 import Private from "./private";
 import HomePage from "../pages/home-page";
-
+import React from "react";
 
 
 const router = createBrowserRouter([
