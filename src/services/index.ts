@@ -1,7 +1,19 @@
-import prisma from './prisma';
-prisma()
+
+import { Services } from '../types/services';
+import * as prisma from './prisma'
 
 
-export default ()=>{
 
+interface AppServices extends Services {
+    'prisma': typeof prisma,
+}
+
+let utils: AppServices = {
+    'prisma': prisma,
+}
+
+export default {
+    get(name: keyof AppServices) {
+        return utils[name]
+    }
 }

@@ -2,17 +2,39 @@ import express from "express";
 import config from "./config";
 import path from "path";
 import services from "./services";
+import apiRoutes from "./api";
+import utils from "./utils";
+import { PrismaClient } from "@prisma/client";
 // GLOBAL DECLARATIONS
 declare global {
   var application: {
-    service: any
+    services: typeof services,
+    utils: typeof utils
   };
 }
 global.application = {
-  service: {
+  services,
+  utils
+};
 
-  }
-}
+
+// (
+//   async function () {
+//     try{
+      
+//       let c =  application.services.get('prisma').client;
+//       console.log(c);
+//       await c.$connect()
+//       console.log('hello');
+      
+//       console.log(await c.user.findMany())
+//       await  c.$disconnect()
+//     }catch(e){
+//       console.log(e);
+      
+//     }
+//   }
+// )()
 
 
 
@@ -23,13 +45,10 @@ const STATIC_PATH =
     ? `${process.cwd()}/client/out`
     : `${process.cwd()}/client/out`;
 
-app.get('/api', (req, res) => {
-  res.send('api routes').end();
-});
+app.use('/api', apiRoutes);
 
 app.use(express.static(path.join(STATIC_PATH), { index: false }));
 app.get('/*', function (req, res) {
-
   res.sendFile(path.join(STATIC_PATH, 'index.html'));
 });
 
