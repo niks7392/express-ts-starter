@@ -5,12 +5,12 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"ts-node-dev --watch src, --respawn src/index.ts\" \" npm run dev:client\" ",
-    "init:dev": "cd client && npm i && cd .. && npm i && concurrently \"ts-node-dev --respawn src/index.ts\" \" npm run dev:client\" ",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\" ",
+    "init:dev": "cd client && npm i && cd .. && npm i && concurrently \"npm run dev:server\" \" npm run dev:client\" ",
     "dev:server": "ts-node-dev --respawn src/index.ts",
     "dev:client": "cd client && npm run dev",
     "build": "npm install &&  tsc",
-    "start": "cd clientv2 && npm install && npm run build && cd .. && npm install && tsc && node dist/index.js"
+    "start": "cd client && npm install && npm run build && cd .. && npm install && tsc && node dist/index.js"
   },
   "author": "",
   "license": "ISC",
