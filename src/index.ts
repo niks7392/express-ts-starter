@@ -4,7 +4,6 @@ import path from "path";
 import services from "./services";
 import apiRoutes from "./api";
 import utils from "./utils";
-import { PrismaClient } from "@prisma/client";
 // GLOBAL DECLARATIONS
 declare global {
   var application: {
@@ -42,8 +41,8 @@ global.application = {
 const app = express();
 const STATIC_PATH =
   process.env.NODE_ENV === "production"
-    ? `${process.cwd()}/client/out`
-    : `${process.cwd()}/client/out`;
+    ? `${process.cwd()}/dist/static`
+    : `${process.cwd()}/dist/static`;
 
 app.use('/api', apiRoutes);
 
@@ -54,4 +53,6 @@ app.get('/*', function (req, res) {
 
 
 
-app.listen(config.PORT, () => console.log(`Application is running on ${config.HOST}`));
+app.listen(config.PORT, () => {
+  console.log(`Application is running on ${config.HOST}`);
+});
